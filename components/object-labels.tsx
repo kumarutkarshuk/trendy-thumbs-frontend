@@ -1,5 +1,4 @@
-"use client"
-
+"use client";
 import {
   Card,
   CardHeader,
@@ -7,6 +6,9 @@ import {
   CardDescription,
   CardContent,
 } from "./ui/card";
+import { BackgroundGradient } from "./ui/background-gradient";
+import SparklesText from "./ui/sparkles-text";
+import { ResponsiveContainer } from "recharts";
 
 export default function ObjectLabels() {
   // const objectLabelsData = [
@@ -21,40 +23,23 @@ export default function ObjectLabels() {
   // ];
 
   return (
-    <Card className=" bg-black text-white">
-      <CardHeader>
-        <CardTitle className="text-white">Object Labels</CardTitle>
-        <CardDescription className="text-gray-300">
-          Common objects detected in thumbnails
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        {/* <ResponsiveContainer width="100%" height={300}>
-          <PieChart>
-            <Pie
-              data={objectLabelsData}
-              cx="50%"
-              cy="50%"
-              innerRadius={60}
-              outerRadius={80}
-              fill="#8884d8"
-              paddingAngle={5}
-              dataKey="value"
-            >
-              {objectLabelsData.map((entry, index) => (
-                <Cell
-                  key={`cell-${index}`}
-                  fill={COLORS[index % COLORS.length]}
-                />
-              ))}
-            </Pie>
-            <Tooltip
-              contentStyle={{ backgroundColor: "#1F2937", border: "none" }}
-              labelStyle={{ color: "#fff" }}
-            />
-          </PieChart>
-        </ResponsiveContainer> */}
-      </CardContent>
-    </Card>
+    <BackgroundGradient className="rounded-[22px] p-[2px] h-full">
+      <Card className="bg-gray-950 text-white border-none rounded-[22px] h-full">
+        <CardHeader>
+          <CardTitle>Object Detection</CardTitle>
+          <CardDescription>
+            Common objects detected in thumbnails
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          {/* ResponsiveContainer used instead of ChartContainer */}
+        <ResponsiveContainer width="100%" height={300}>
+          <div className="flex justify-center items-center h-full">
+            <SparklesText text="Coming Soon..." className="md:text-2xl text-xl font-thin"/>
+          </div>
+          </ResponsiveContainer>
+        </CardContent>
+      </Card>
+    </BackgroundGradient>
   );
 }

@@ -1,16 +1,11 @@
 "use client";
 
 import {
-  ResponsiveContainer,
-  BarChart,
   XAxis,
-  YAxis,
-  Tooltip,
-  Bar,
   CartesianGrid,
   Line,
   LineChart,
-  LabelList,
+  YAxis,
 } from "recharts";
 import {
   Card,
@@ -26,6 +21,7 @@ import {
   ChartTooltipContent,
 } from "./ui/chart";
 import { AnalysisControllerService } from "@/open-api";
+import { BackgroundGradient } from "./ui/background-gradient";
 
 // eslint-disable-next-line @next/next/no-async-client-component
 export default async function WordCount() {
@@ -36,15 +32,27 @@ export default async function WordCount() {
     }
   })
 
+  // const data = [
+  //   { count: 1 },
+  //   { count: 2 },
+  //   { count: 10 },
+  //   { count: 2 },
+  //   { count: 3 },
+  //   { count: 1 },
+  //   { count: 3 },
+  //   { count: 6 },
+  //   { count: 2 },
+  // ];
+
   const chartConfig = {
-    desktop: {
-      label: "Desktop",
-      color: "hsl(var(--chart-1))",
+    count: {
+      label: "Count",
     },
   } satisfies ChartConfig;
 
   return (
-    <Card className="bg-black text-white">
+    <BackgroundGradient className="rounded-[22px] p-[2px] h-full">
+    <Card className="bg-gray-950 text-white border-none h-full rounded-[22px]">
       <CardHeader>
         <CardTitle className="text-white">Word Count Distribution</CardTitle>
         <CardDescription className="text-gray-300">
@@ -52,7 +60,6 @@ export default async function WordCount() {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <ResponsiveContainer width="100%" height={300}>
           <ChartContainer config={chartConfig}>
             <LineChart
               accessibilityLayer
@@ -70,6 +77,14 @@ export default async function WordCount() {
                 tickMargin={8}
                 tickFormatter={(value) => value.slice(0, 3)}
               />
+              <YAxis 
+                label={{ 
+                  value: 'Value', 
+                  angle: -90, 
+                  position: 'insideLeft',
+                  style: { textAnchor: 'middle'}
+                }}
+              />
               <ChartTooltip
                 cursor={false}
                 content={<ChartTooltipContent hideLabel />}
@@ -77,21 +92,14 @@ export default async function WordCount() {
               <Line
                 dataKey="count"
                 type="linear"
-                stroke="var(--color-desktop)"
+                stroke="#FFA500"
                 strokeWidth={2}
                 dot={false}
-              >
-               <LabelList
-                position="top"
-                offset={12}
-                className="fill-white"
-                fontSize={12}
-              />
-              </Line>
+             />
             </LineChart>
           </ChartContainer>
-        </ResponsiveContainer>
       </CardContent>
     </Card>
+    </BackgroundGradient>
   );
 }

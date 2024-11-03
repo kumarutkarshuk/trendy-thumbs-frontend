@@ -10,6 +10,7 @@ export type { OpenAPIConfig } from './core/OpenAPI';
 export type { ColorCategory } from './models/ColorCategory';
 export type { ExpressionCategory } from './models/ExpressionCategory';
 export type { ThumbnailAnalysis } from './models/ThumbnailAnalysis';
+export type { ThumbnailDTO } from './models/ThumbnailDTO';
 
 export { AnalysisControllerService } from './services/AnalysisControllerService';
 export { HomeControllerService } from './services/HomeControllerService';

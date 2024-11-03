@@ -5,6 +5,7 @@
 import type { ColorCategory } from '../models/ColorCategory';
 import type { ExpressionCategory } from '../models/ExpressionCategory';
 import type { ThumbnailAnalysis } from '../models/ThumbnailAnalysis';
+import type { ThumbnailDTO } from '../models/ThumbnailDTO';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
@@ -30,10 +31,10 @@ export class AnalysisControllerService {
         });
     }
     /**
-     * @returns string OK
+     * @returns ThumbnailDTO OK
      * @throws ApiError
      */
-    public static getTrendingThumbnails(): CancelablePromise<Array<string>> {
+    public static getTrendingThumbnails(): CancelablePromise<Array<ThumbnailDTO>> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/analysis/thumbnails',

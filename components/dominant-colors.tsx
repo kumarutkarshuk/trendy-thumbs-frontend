@@ -1,12 +1,6 @@
 "use client";
 
-import {
-  ResponsiveContainer,
-  Tooltip,
-  Cell,
-  Pie,
-  PieChart,
-} from "recharts";
+import { Bar, BarChart, CartesianGrid, LabelList, XAxis } from "recharts";
 import {
   Card,
   CardHeader,
@@ -14,58 +8,104 @@ import {
   CardDescription,
   CardContent,
 } from "./ui/card";
+import { BackgroundGradient } from "./ui/background-gradient";
+import {
+  ChartConfig,
+  ChartContainer,
+  ChartTooltip,
+  ChartTooltipContent,
+} from "./ui/chart";
 import { AnalysisControllerService } from "@/open-api";
+
+const chartConfig = {
+  black: {
+    label: "Black",
+  },
+  blue: {
+    label: "Blue",
+  },
+  gray: {
+    label: "Gray",
+  },
+  green: {
+    label: "Green",
+  },
+  red: {
+    label: "Red",
+  },
+  white: {
+    label: "White",
+  },
+  yellow: {
+    label: "Yellow",
+  },
+  other: {
+    label: "Other",
+  },
+} satisfies ChartConfig;
 
 // eslint-disable-next-line @next/next/no-async-client-component
 export default async function DominantColors() {
   const colors = await AnalysisControllerService.getCategorizedColors();
+  // const colors = {
+  //   black: 16,
+  //   blue: 15,
+  //   gray: 5,
+  //   green: 2,
+  //   red: 1,
+  //   white: 5,
+  //   yellow: 22,
+  //   other: 2,
+  // };
   const data = [];
-  data.push({ color: "black", value: colors.black, hex: "#000000" });
-  data.push({ color: "blue", value: colors.blue, hex: "#0000FF" });
-  data.push({ color: "gray", value: colors.gray, hex: "#808080" });
-  data.push({ color: "green", value: colors.green, hex: "#008000" });
-  data.push({ color: "red", value: colors.red, hex: "#FF0000" });
-  data.push({ color: "white", value: colors.white, hex: "#FFFFFF" });
-  data.push({ color: "yellow", value: colors.yellow, hex: "#FFFF00" });
-  data.push({ color: "other", value: colors.other, hex: "" });
+  data.push({ color: "black", value: colors.black, fill: "#505050" });
+  data.push({ color: "blue", value: colors.blue, fill: "#0000FF" });
+  data.push({ color: "gray", value: colors.gray, fill: "#808080" });
+  data.push({ color: "green", value: colors.green, fill: "#008000" });
+  data.push({ color: "red", value: colors.red, fill: "#FF0000" });
+  data.push({ color: "white", value: colors.white, fill: "#FFFFFF" });
+  data.push({ color: "yellow", value: colors.yellow, fill: "#FFFF00" });
+  data.push({ color: "other", value: colors.other, fill: "#FFA500" });
 
   return (
-    <Card className="bg-black text-white">
-      <CardHeader>
-        <CardTitle className="text-white">Facial Expressions</CardTitle>
-        <CardDescription className="text-gray-300">
-          Common expressions in thumbnails
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        <ResponsiveContainer width="100%" height={300}>
-          <PieChart>
-            <Pie
+    <BackgroundGradient className="rounded-[22px] p-[2px] h-full">
+      <Card className="flex flex-col bg-gray-950 text-white rounded-[22px] border-none h-full">
+        <CardHeader>
+          <CardTitle>Dominant Colors</CardTitle>
+          <CardDescription>Most common colors in thumbnails</CardDescription>
+        </CardHeader>
+        <CardContent className="flex-1 pb-0">
+          <ChartContainer config={chartConfig}>
+            <BarChart
+              accessibilityLayer
               data={data}
-              cx="50%"
-              cy="50%"
-              labelLine={false}
-              outerRadius={80}
-              fill="#8884d8"
-              dataKey="value"
-              label={({ name, percent }) =>
-                `${name} ${(percent * 100).toFixed(0)}%`
-              }
+              margin={{
+                top: 20,
+              }}
             >
-              {data.map((entry, index) => (
-                <Cell
-                  key={index}
-                  fill={entry.hex}
+              <CartesianGrid vertical={false} />
+              <XAxis
+                dataKey="color"
+                tickLine={false}
+                tickMargin={10}
+                axisLine={false}
+                tickFormatter={(value) => value.slice(0, 3)}
+              />
+              <ChartTooltip
+                cursor={false}
+                content={<ChartTooltipContent hideLabel />}
+              />
+              <Bar dataKey="value" radius={8}>
+                <LabelList
+                  position="top"
+                  offset={12}
+                  fontSize={12}
                 />
-              ))}
-            </Pie>
-            <Tooltip
-              contentStyle={{ backgroundColor: "#1F2937", border: "none" }}
-              labelStyle={{ color: "#fff" }}
-            />
-          </PieChart>
-        </ResponsiveContainer>
-      </CardContent>
-    </Card>
+              </Bar>
+            </BarChart>
+          </ChartContainer>
+        </CardContent>
+      </Card>
+    </BackgroundGradient>
   );
 }

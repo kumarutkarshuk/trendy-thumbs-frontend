@@ -1,12 +1,11 @@
 import type { Metadata } from "next";
-import {Ubuntu} from "next/font/google";
+import { Ubuntu } from "next/font/google";
 import "./globals.css";
 
 const ubuntu = Ubuntu({
   subsets: ["latin"],
-  weight: "300"
+  weight: ["300", "500"],
 });
-
 
 export const metadata: Metadata = {
   title: "TrendyThumbs",
@@ -20,9 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${ubuntu.className} antialiased`}
-      >
+      <body className={`${ubuntu.className} antialiased`}>
         {children}
       </body>
     </html>
