@@ -3,6 +3,7 @@
 /* tslint:disable */
 /* eslint-disable */
 import type { ColorCategory } from '../models/ColorCategory';
+import type { ExpressionCategory } from '../models/ExpressionCategory';
 import type { ThumbnailAnalysis } from '../models/ThumbnailAnalysis';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
@@ -22,10 +23,10 @@ export class AnalysisControllerService {
      * @returns number OK
      * @throws ApiError
      */
-    public static getWordCountCategorized(): CancelablePromise<Record<string, number>> {
+    public static getWordCountList(): CancelablePromise<Array<number>> {
         return __request(OpenAPI, {
             method: 'GET',
-            url: '/analysis/wordCountCategorized',
+            url: '/analysis/wordCountList',
         });
     }
     /**
@@ -39,10 +40,10 @@ export class AnalysisControllerService {
         });
     }
     /**
-     * @returns number OK
+     * @returns ExpressionCategory OK
      * @throws ApiError
      */
-    public static getFacialExpressionsCategorized(): CancelablePromise<Record<string, number>> {
+    public static getFacialExpressionsCategorized(): CancelablePromise<ExpressionCategory> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/analysis/facialExpressionsCategorized',

@@ -8,6 +8,7 @@ export { OpenAPI } from './core/OpenAPI';
 export type { OpenAPIConfig } from './core/OpenAPI';
 
 export type { ColorCategory } from './models/ColorCategory';
+export type { ExpressionCategory } from './models/ExpressionCategory';
 export type { ThumbnailAnalysis } from './models/ThumbnailAnalysis';
 
 export { AnalysisControllerService } from './services/AnalysisControllerService';
