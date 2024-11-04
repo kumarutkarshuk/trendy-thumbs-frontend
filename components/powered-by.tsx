@@ -11,7 +11,7 @@ export default function PoweredBy() {
       className: "text-gray-200 text-xl md:text-5xl",
     },
     {
-      text: "Google Vision.",
+      text: "Google Vision AI.",
       className: "text-[#2761D9] text-xl md:text-5xl",
     },
   ];
