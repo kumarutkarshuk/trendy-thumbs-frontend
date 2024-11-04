@@ -122,8 +122,7 @@ export const Header = () => {
       </BlurFade>
       <BlurFade delay={0.1 * 2} inView>
         <p className="max-w-2xl text-base md:text-xl mt-8 text-md font-thin">
-          Analyze and discover the thumbnails of latest trending videos on
-          YouTube
+          Analyze and discover thumbnails of trending YouTube videos
         </p>
       </BlurFade>
     </div>
