@@ -1,12 +1,4 @@
-"use client";
-
-import {
-  XAxis,
-  CartesianGrid,
-  Line,
-  LineChart,
-  YAxis,
-} from "recharts";
+import { XAxis, CartesianGrid, Line, LineChart, YAxis } from "recharts";
 import {
   Card,
   CardContent,
@@ -20,29 +12,15 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "./ui/chart";
-import { AnalysisControllerService } from "@/open-api";
 import { BackgroundGradient } from "./ui/background-gradient";
 
-// eslint-disable-next-line @next/next/no-async-client-component
-export default async function WordCount() {
-  const wordCountList = await AnalysisControllerService.getWordCountList();
-  const data = wordCountList.map((count) => {
-    return{
-      count
-    }
-  })
-
-  // const data = [
-  //   { count: 1 },
-  //   { count: 2 },
-  //   { count: 10 },
-  //   { count: 2 },
-  //   { count: 3 },
-  //   { count: 1 },
-  //   { count: 3 },
-  //   { count: 6 },
-  //   { count: 2 },
-  // ];
+export default function WordCount({data}:{data: number[]}) {
+  
+  const dataForChart = data.map((count) => {
+    return {
+      count,
+    };
+  });
 
   const chartConfig = {
     count: {
@@ -52,18 +30,18 @@ export default async function WordCount() {
 
   return (
     <BackgroundGradient className="rounded-[22px] p-[2px] h-full">
-    <Card className="bg-gray-950 text-white border-none h-full rounded-[22px]">
-      <CardHeader>
-        <CardTitle className="text-white">Word Count Distribution</CardTitle>
-        <CardDescription className="text-gray-300">
-          Number of words in thumbnails
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
+      <Card className="bg-gray-900 text-white border-none h-full rounded-[22px]">
+        <CardHeader>
+          <CardTitle className="text-white">Word Count Distribution</CardTitle>
+          <CardDescription>
+            Number of words in thumbnails
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
           <ChartContainer config={chartConfig}>
             <LineChart
               accessibilityLayer
-              data={data}
+              data={dataForChart}
               margin={{
                 left: 12,
                 right: 12,
@@ -77,12 +55,12 @@ export default async function WordCount() {
                 tickMargin={8}
                 tickFormatter={(value) => value.slice(0, 3)}
               />
-              <YAxis 
-                label={{ 
-                  value: 'Value', 
-                  angle: -90, 
-                  position: 'insideLeft',
-                  style: { textAnchor: 'middle'}
+              <YAxis
+                label={{
+                  value: "Value",
+                  angle: -90,
+                  position: "insideLeft",
+                  style: { textAnchor: "middle" },
                 }}
               />
               <ChartTooltip
@@ -92,14 +70,14 @@ export default async function WordCount() {
               <Line
                 dataKey="count"
                 type="linear"
-                stroke="#FFA500"
+                stroke="#7B77BB"
                 strokeWidth={2}
                 dot={false}
-             />
+              />
             </LineChart>
           </ChartContainer>
-      </CardContent>
-    </Card>
+        </CardContent>
+      </Card>
     </BackgroundGradient>
   );
 }

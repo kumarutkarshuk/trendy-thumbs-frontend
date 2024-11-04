@@ -10,15 +10,19 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import AnalysisGrid from "../analysis-grid";
+import { AnalysisType } from "@/lib/types";
+import Footer from "../footer";
 
 export const HeroParallax = ({
   products,
+  data
 }: {
   products: {
     title: string;
     link: string;
     thumbnail: string;
-  }[];
+  }[],
+  data: AnalysisType
 }) => {
   const firstRow = products.slice(0, 5);
   const secondRow = products.slice(5, 10);
@@ -71,7 +75,7 @@ export const HeroParallax = ({
         }}
         className=""
       >
-        <motion.div className="flex flex-row-reverse space-x-reverse space-x-20 mb-20">
+        <motion.div className="flex flex-row-reverse space-x-reverse md:space-x-20 space-x-10 mb-20">
           {firstRow.map((product) => (
             <ProductCard
               product={product}
@@ -80,7 +84,7 @@ export const HeroParallax = ({
             />
           ))}
         </motion.div>
-        <motion.div className="flex flex-row  mb-20 space-x-20 ">
+        <motion.div className="flex flex-row  mb-20 md:space-x-20 space-x-10">
           {secondRow.map((product) => (
             <ProductCard
               product={product}
@@ -100,7 +104,9 @@ export const HeroParallax = ({
         </motion.div>
       </motion.div>
 
-      <AnalysisGrid/>
+      <AnalysisGrid data={data}/>
+
+      <Footer/>
     </div>
   );
 };
@@ -112,7 +118,7 @@ export const Header = () => {
         TrendyThumbs
       </h1>
       <p className="max-w-2xl text-base md:text-xl mt-8 text-md font-thin">
-        Analyze and discover the latest trending thumbnails on YouTube
+        Analyze and discover the thumbnails of latest trending videos on YouTube
       </p>
     </div>
   );

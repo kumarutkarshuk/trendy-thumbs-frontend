@@ -1,5 +1,3 @@
-"use client";
-
 import { Bar, BarChart, CartesianGrid, LabelList, XAxis } from "recharts";
 import {
   Card,
@@ -15,61 +13,41 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "./ui/chart";
-import { AnalysisControllerService } from "@/open-api";
+import { ColorDetails } from "@/open-api";
 
 const chartConfig = {
-  black: {
+  Black: {
     label: "Black",
   },
-  blue: {
+  Blue: {
     label: "Blue",
   },
-  gray: {
+  Gray: {
     label: "Gray",
   },
-  green: {
+  Green: {
     label: "Green",
   },
-  red: {
+  Red: {
     label: "Red",
   },
-  white: {
+  White: {
     label: "White",
   },
-  yellow: {
+  Yellow: {
     label: "Yellow",
   },
-  other: {
+  Other: {
     label: "Other",
   },
 } satisfies ChartConfig;
 
-// eslint-disable-next-line @next/next/no-async-client-component
-export default async function DominantColors() {
-  const colors = await AnalysisControllerService.getCategorizedColors();
-  // const colors = {
-  //   black: 16,
-  //   blue: 15,
-  //   gray: 5,
-  //   green: 2,
-  //   red: 1,
-  //   white: 5,
-  //   yellow: 22,
-  //   other: 2,
-  // };
-  const data = [];
-  data.push({ color: "black", value: colors.black, fill: "#505050" });
-  data.push({ color: "blue", value: colors.blue, fill: "#0000FF" });
-  data.push({ color: "gray", value: colors.gray, fill: "#808080" });
-  data.push({ color: "green", value: colors.green, fill: "#008000" });
-  data.push({ color: "red", value: colors.red, fill: "#FF0000" });
-  data.push({ color: "white", value: colors.white, fill: "#FFFFFF" });
-  data.push({ color: "yellow", value: colors.yellow, fill: "#FFFF00" });
-  data.push({ color: "other", value: colors.other, fill: "#FFA500" });
+export default function DominantColors({data}:{data: ColorDetails[]}) {
+
 
   return (
     <BackgroundGradient className="rounded-[22px] p-[2px] h-full">
-      <Card className="flex flex-col bg-gray-950 text-white rounded-[22px] border-none h-full">
+      <Card className="flex flex-col bg-gray-900 text-white rounded-[22px] border-none h-full">
         <CardHeader>
           <CardTitle>Dominant Colors</CardTitle>
           <CardDescription>Most common colors in thumbnails</CardDescription>
@@ -100,6 +78,7 @@ export default async function DominantColors() {
                   position="top"
                   offset={12}
                   fontSize={12}
+                  fill="#ffffff"
                 />
               </Bar>
             </BarChart>

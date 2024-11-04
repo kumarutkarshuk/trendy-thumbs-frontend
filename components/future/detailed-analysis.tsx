@@ -1,11 +1,6 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "./ui/card";
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "../ui/card";
+
 
 export default function DetailedAnalysis() {
   return (

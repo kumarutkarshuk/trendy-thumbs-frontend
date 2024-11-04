@@ -1,34 +1,31 @@
 import { HeroParallax } from "@/components/ui/hero-parallax";
 import { AnalysisControllerService } from "@/open-api";
 
-
 export default async function Home() {
+  const {
+    getTrendingThumbnails,
+    getFacialExpressionDetails,
+    getDominantColorDetails,
+    getWordCountList
+  } = AnalysisControllerService;
+  const [dominantColors, facialExpressions, thumbnailData, wordCountList] = await Promise.all([
+    getDominantColorDetails(),
+    getFacialExpressionDetails(),
+    getTrendingThumbnails(),
+    getWordCountList()
+  ]);
 
-  const thumbnails = await AnalysisControllerService.getTrendingThumbnails();
-
-  const data = thumbnails.map((thumbnail) => {
-    return{
+  const products = thumbnailData.map((thumbnail) => {
+    return {
       thumbnail: thumbnail.thumbnailUrl,
       title: thumbnail.title,
-      link: thumbnail.videoUrl
-    }
-  })
+      link: thumbnail.videoUrl,
+    };
+  });
 
-  // const data = [
-  //   {thumbnail: "https://i.ytimg.com/vi/ILu4LcipWI0/hqdefault.jpg", title: "hi", link:""},
-  //   {thumbnail: "https://i.ytimg.com/vi/ILu4LcipWI0/hqdefault.jpg", title: "hi", link:""},
-  //   {thumbnail: "https://i.ytimg.com/vi/ILu4LcipWI0/hqdefault.jpg", title: "hi", link:""},
-  //   {thumbnail: "https://i.ytimg.com/vi/ILu4LcipWI0/hqdefault.jpg", title: "hi", link:""},
-  //   {thumbnail: "https://i.ytimg.com/vi/ILu4LcipWI0/hqdefault.jpg", title: "hi", link:""},
-  //   {thumbnail: "https://i.ytimg.com/vi/ILu4LcipWI0/hqdefault.jpg", title: "hi", link:""},
-  //   {thumbnail: "https://i.ytimg.com/vi/ILu4LcipWI0/hqdefault.jpg", title: "hi", link:""},
-  //   {thumbnail: "https://i.ytimg.com/vi/ILu4LcipWI0/hqdefault.jpg", title: "hi", link:""},
-  //   {thumbnail: "https://i.ytimg.com/vi/ILu4LcipWI0/hqdefault.jpg", title: "hi", link:""},
-  //   {thumbnail: "https://i.ytimg.com/vi/ILu4LcipWI0/hqdefault.jpg", title: "hi", link:""},
+  
 
-  // ];
-
-  return (
-    <HeroParallax products={data}/>
-  );
+  return(
+      <HeroParallax products={products} data={{dominantColors, facialExpressions, wordCountList}}/>
+  )
 }

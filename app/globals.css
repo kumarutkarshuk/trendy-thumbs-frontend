@@ -76,3 +76,16 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.1;
+  }
+}
+
+.animate-pulse {
+  animation: pulse 2s infinite;
+}

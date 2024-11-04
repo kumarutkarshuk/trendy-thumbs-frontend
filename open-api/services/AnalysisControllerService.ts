@@ -2,8 +2,8 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { ColorCategory } from '../models/ColorCategory';
-import type { ExpressionCategory } from '../models/ExpressionCategory';
+import type { ColorDetails } from '../models/ColorDetails';
+import type { ExpressionDetails } from '../models/ExpressionDetails';
 import type { ThumbnailAnalysis } from '../models/ThumbnailAnalysis';
 import type { ThumbnailDTO } from '../models/ThumbnailDTO';
 import type { CancelablePromise } from '../core/CancelablePromise';
@@ -41,23 +41,23 @@ export class AnalysisControllerService {
         });
     }
     /**
-     * @returns ExpressionCategory OK
+     * @returns ExpressionDetails OK
      * @throws ApiError
      */
-    public static getFacialExpressionsCategorized(): CancelablePromise<ExpressionCategory> {
+    public static getFacialExpressionDetails(): CancelablePromise<Array<ExpressionDetails>> {
         return __request(OpenAPI, {
             method: 'GET',
-            url: '/analysis/facialExpressionsCategorized',
+            url: '/analysis/facialExpressionDetails',
         });
     }
     /**
-     * @returns ColorCategory OK
+     * @returns ColorDetails OK
      * @throws ApiError
      */
-    public static getCategorizedColors(): CancelablePromise<ColorCategory> {
+    public static getDominantColorDetails(): CancelablePromise<Array<ColorDetails>> {
         return __request(OpenAPI, {
             method: 'GET',
-            url: '/analysis/dominantColorsCategorized',
+            url: '/analysis/dominantColorDetails',
         });
     }
 }

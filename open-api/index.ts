@@ -7,8 +7,8 @@ export { CancelablePromise, CancelError } from './core/CancelablePromise';
 export { OpenAPI } from './core/OpenAPI';
 export type { OpenAPIConfig } from './core/OpenAPI';
 
-export type { ColorCategory } from './models/ColorCategory';
-export type { ExpressionCategory } from './models/ExpressionCategory';
+export type { ColorDetails } from './models/ColorDetails';
+export { ExpressionDetails } from './models/ExpressionDetails';
 export type { ThumbnailAnalysis } from './models/ThumbnailAnalysis';
 export type { ThumbnailDTO } from './models/ThumbnailDTO';
 

@@ -1,30 +1,22 @@
 import { Suspense } from "react";
-import DominantColors from "./dominant-colors";
 import FacialExpressions from "./facial-expressions";
-import ObjectLabels from "./object-labels";
+import ObjectLabels from "./future/object-labels";
 import WordCount from "./word-count";
+import DominantColors from "./dominant-colors";
+import { ColorDetails } from "@/open-api";
+import { AnalysisType } from "@/lib/types";
 
-export default function AnalysisGrid() {
+export default function AnalysisGrid({data}:{data: AnalysisType}) {
   return (
     <div className="w-full px-6 z-10">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        
+          <DominantColors data={data.dominantColors}/>
 
-        <Suspense fallback={<p>loading...</p>}>
-          <DominantColors />
-        </Suspense>
+          <WordCount data={data.wordCountList}/>
 
-        <Suspense fallback={<p>loading...</p>}>
-          <WordCount />
-        </Suspense>
+          <FacialExpressions data={data.facialExpressions}/>
 
-        <Suspense fallback={<p>loading...</p>}>
-          <FacialExpressions />
-        </Suspense>
-
-        <Suspense fallback={<p>loading...</p>}>
           <ObjectLabels />
-        </Suspense>
       </div>
 
       {/* <DetailedAnalysis/> */}
