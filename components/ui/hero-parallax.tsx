@@ -12,17 +12,19 @@ import Link from "next/link";
 import AnalysisGrid from "../analysis-grid";
 import { AnalysisType } from "@/lib/types";
 import Footer from "../footer";
+import BlurFade from "./blur-fade";
+import PoweredBy from "../powered-by";
 
 export const HeroParallax = ({
   products,
-  data
+  data,
 }: {
   products: {
     title: string;
     link: string;
     thumbnail: string;
-  }[],
-  data: AnalysisType
+  }[];
+  data: AnalysisType;
 }) => {
   const firstRow = products.slice(0, 5);
   const secondRow = products.slice(5, 10);
@@ -65,7 +67,6 @@ export const HeroParallax = ({
       className="pt-60 pb-10 overflow-hidden antialiased relative flex flex-col self-auto [perspective:1000px] [transform-style:preserve-3d] bg-black text-white"
     >
       <Header />
-      
       <motion.div
         style={{
           rotateX,
@@ -84,7 +85,7 @@ export const HeroParallax = ({
             />
           ))}
         </motion.div>
-        <motion.div className="flex flex-row  mb-20 md:space-x-20 space-x-10">
+        <motion.div className="flex flex-row  md:mb-20 mb-0 md:space-x-20 space-x-10">
           {secondRow.map((product) => (
             <ProductCard
               product={product}
@@ -104,9 +105,11 @@ export const HeroParallax = ({
         </motion.div>
       </motion.div>
 
-      <AnalysisGrid data={data}/>
+      <PoweredBy />
 
-      <Footer/>
+      <AnalysisGrid data={data} />
+
+      <Footer />
     </div>
   );
 };
@@ -114,12 +117,15 @@ export const HeroParallax = ({
 export const Header = () => {
   return (
     <div className="max-w-7xl relative mx-auto py-20 md:py-40 px-4 w-full  left-0 top-0">
-      <h1 className="text-4xl md:text-7xl font-bold  ">
-        TrendyThumbs
-      </h1>
-      <p className="max-w-2xl text-base md:text-xl mt-8 text-md font-thin">
-        Analyze and discover the thumbnails of latest trending videos on YouTube
-      </p>
+      <BlurFade delay={0.1} inView>
+        <h1 className="text-4xl md:text-7xl font-bold  ">TrendyThumbs</h1>
+      </BlurFade>
+      <BlurFade delay={0.1 * 2} inView>
+        <p className="max-w-2xl text-base md:text-xl mt-8 text-md font-thin">
+          Analyze and discover the thumbnails of latest trending videos on
+          YouTube
+        </p>
+      </BlurFade>
     </div>
   );
 };
