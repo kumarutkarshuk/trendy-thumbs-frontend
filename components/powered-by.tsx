@@ -4,15 +4,15 @@ export default function PoweredBy() {
   const words = [
     {
       text: "Powered",
-      className: "text-white text-lg md:text-5xl",
+      className: "text-gray-200 text-xl md:text-5xl",
     },
     {
       text: "by",
-      className: "text-white text-lg md:text-5xl",
+      className: "text-gray-200 text-xl md:text-5xl",
     },
     {
       text: "Google Vision.",
-      className: "text-[#2761D9] text-lg md:text-5xl",
+      className: "text-[#2761D9] text-xl md:text-5xl",
     },
   ];
   return(
