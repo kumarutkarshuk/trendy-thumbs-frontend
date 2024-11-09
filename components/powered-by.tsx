@@ -1,6 +1,10 @@
 import { TypewriterEffectSmooth } from "./ui/typewriter-effect";
 
-export default function PoweredBy() {
+export default function PoweredBy({
+  lastAnalyzedDate
+}:{
+  lastAnalyzedDate: string
+}) {
   const words = [
     {
       text: "Powered",
@@ -27,7 +31,7 @@ export default function PoweredBy() {
         <button className="inline-flex h-12 animate-shimmer items-center justify-center rounded-md border border-gray-900 bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)] bg-[length:200%_100%] md:px-6 px-4 font-medium text-slate-400 transition-colors text-xs md:text-base">
           <div className="flex gap-2">
             <p>Last Analysis:</p>
-            <span className="text-[#2761D9]"> Nov 4, 2024</span>
+            <span className="text-[#2761D9]">{lastAnalyzedDate}</span>
           </div>
         </button>
       </div>

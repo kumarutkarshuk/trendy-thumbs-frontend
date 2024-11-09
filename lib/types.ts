@@ -1,7 +1,8 @@
-import { ColorDetails, ExpressionDetails } from "@/open-api";
+import { ColorDetails, ExpressionDetails, LastAnalyzedDateDTO } from "@/open-api";
 
 export interface AnalysisType {
     dominantColors: ColorDetails[];
     facialExpressions: ExpressionDetails[];
-    wordCountList: number[]
+    wordCountList: number[];
+    lastAnalyzedDate: LastAnalyzedDateDTO;
   }

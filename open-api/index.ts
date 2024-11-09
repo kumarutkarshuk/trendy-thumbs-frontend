@@ -9,6 +9,7 @@ export type { OpenAPIConfig } from './core/OpenAPI';
 
 export type { ColorDetails } from './models/ColorDetails';
 export { ExpressionDetails } from './models/ExpressionDetails';
+export type { LastAnalyzedDateDTO } from './models/LastAnalyzedDateDTO';
 export type { ThumbnailAnalysis } from './models/ThumbnailAnalysis';
 export type { ThumbnailDTO } from './models/ThumbnailDTO';
 

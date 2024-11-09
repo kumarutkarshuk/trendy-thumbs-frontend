@@ -105,7 +105,7 @@ export const HeroParallax = ({
         </motion.div>
       </motion.div>
 
-      <PoweredBy />
+      <PoweredBy lastAnalyzedDate={data.lastAnalyzedDate.lastAnalyzedDate}/>
 
       <AnalysisGrid data={data} />
 

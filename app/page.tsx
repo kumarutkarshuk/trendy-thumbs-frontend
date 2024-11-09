@@ -6,13 +6,15 @@ export default async function Home() {
     getTrendingThumbnails,
     getFacialExpressionDetails,
     getDominantColorDetails,
-    getWordCountList
+    getWordCountList,
+    getLastAnalyzedDate
   } = AnalysisControllerService;
-  const [dominantColors, facialExpressions, thumbnailData, wordCountList] = await Promise.all([
+  const [dominantColors, facialExpressions, thumbnailData, wordCountList, lastAnalyzedDate] = await Promise.all([
     getDominantColorDetails(),
     getFacialExpressionDetails(),
     getTrendingThumbnails(),
-    getWordCountList()
+    getWordCountList(),
+    getLastAnalyzedDate()
   ]);
 
   const products = thumbnailData.map((thumbnail) => {
@@ -23,9 +25,7 @@ export default async function Home() {
     };
   });
 
-  
-
   return(
-      <HeroParallax products={products} data={{dominantColors, facialExpressions, wordCountList}}/>
+      <HeroParallax products={products} data={{dominantColors, facialExpressions, wordCountList, lastAnalyzedDate}}/>
   )
 }

@@ -4,6 +4,7 @@
 /* eslint-disable */
 import type { ColorDetails } from '../models/ColorDetails';
 import type { ExpressionDetails } from '../models/ExpressionDetails';
+import type { LastAnalyzedDateDTO } from '../models/LastAnalyzedDateDTO';
 import type { ThumbnailAnalysis } from '../models/ThumbnailAnalysis';
 import type { ThumbnailDTO } from '../models/ThumbnailDTO';
 import type { CancelablePromise } from '../core/CancelablePromise';
@@ -38,6 +39,16 @@ export class AnalysisControllerService {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/analysis/thumbnails',
+        });
+    }
+    /**
+     * @returns LastAnalyzedDateDTO OK
+     * @throws ApiError
+     */
+    public static getLastAnalyzedDate(): CancelablePromise<LastAnalyzedDateDTO> {
+        return __request(OpenAPI, {
+            method: 'GET',
+            url: '/analysis/lastAnalyzedDate',
         });
     }
     /**
